@@ -8,7 +8,6 @@ const travelSchema = new mongoose.Schema({
   },
   data_ida: {
     type: Date,
-    required: [true, "A data de ida é obrigatória."],
   },
   data_volta: {
     type: Date,
