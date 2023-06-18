@@ -12,7 +12,6 @@ const travelSchema = new mongoose.Schema({
   },
   data_volta: {
     type: Date,
-    required: [true, "A data de ida é obrigatória."],
   },
   nota_fiscal: { type: String },
   quilometragem_ida: {
