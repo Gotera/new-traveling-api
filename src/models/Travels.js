@@ -12,19 +12,18 @@ const travelSchema = new mongoose.Schema({
   },
   data_volta: {
     type: Date,
-    required: [true, "A data de ida é obrigatória."],
   },
   nota_fiscal: { type: String },
   quilometragem_ida: {
-    type: String,
+    type: String
     // , required: [true, "A quilimetragem de ida é obrigatória."]
   },
   quilometragem_volta: {
-    type: String,
+    type: String
     // , required: [true, "A quilimetragem de ida é obrigatória."]
   },
   valor_diesel: {
-    type: String,
+    type: String
     // , required: [true, "A quilimetragem de ida é obrigatória."]
   },
   lucro: { type: String },
