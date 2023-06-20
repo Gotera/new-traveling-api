@@ -1,4 +1,5 @@
-import { users } from "../models";
+import { users } from "../models/index.js";
+
 
 class UserController {
   static registerUser = async (req, res, next) => {
