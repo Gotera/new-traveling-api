@@ -11,8 +11,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     password: String,
-    required: [true, "A password é obrigatória"]
+    required: [true, "A senha é obrigatória"]
   },
 });
-const user = mongoose.model("user", userSchema);
-export default user;
+const users = mongoose.model("uses", userSchema);
+export default users;
