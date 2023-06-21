@@ -14,11 +14,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "O senha é obrigatório"],
   },
-  confinformpassword: {
-    type: String,
-    required: [true, "As senhas precisam ser a mesmas"],
-    validate: { validator: confinformpassword.equal(password), msg: "As senhas não coincidem" },
-  },
 });
 const users = mongoose.model("users", userSchema);
 export default users;
