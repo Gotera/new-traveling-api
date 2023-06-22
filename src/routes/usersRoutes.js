@@ -4,5 +4,5 @@ import validatePassword from "../middlewares/validatePass.js";
 
 const router = express.Router();
 
-router.post("/api/register/user", UserController.registerUser, validatePassword);
+router.post("/api/register/user", UserController.registerUser);
 export default router;
