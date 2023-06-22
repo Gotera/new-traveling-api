@@ -11,11 +11,4 @@ class UserController {
     }
   };
 }
-
-// "users.comparePassword(request.body.password, (error, match) => {
-//   if (!match) {
-//     return response.status(400).send({ message: "The password is invalid" });
-//   }
-// });"
-
 export default UserController;

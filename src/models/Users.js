@@ -13,7 +13,14 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "O senha é obrigatório"],
+    minLength: [6, "Minimos de caracteres é 6"],
   },
 });
+
+userSchema.post("save", function (doc, next) {
+  console.log("novo usuario criado e salvo", doc);
+  // next()
+});
+
 const users = mongoose.model("users", userSchema);
 export default users;
