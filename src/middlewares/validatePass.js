@@ -1,10 +1,9 @@
 import incorrectRequisition from "../errors/incorrectRequisition.js";
 
-async function validatePassword(password) {
+async function validatePassword(password, confirmpassword, res, next) {
   try {
-    //do the validation
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
