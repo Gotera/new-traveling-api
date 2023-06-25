@@ -2,10 +2,10 @@ import validatePassword from "../middlewares/validatePass.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { users } from "../models/index.js";
-import error404 from '../errors/notFound.js'
+import error404 from "../errors/notFound.js";
 
 class UserController {
-  static registerUser = async (req, res, next) => {
+  static register = async (req, res, next) => {
     try {
       const { name, password, email, confirmpassword } = req.body;
       const dataVerified = new users({
@@ -32,7 +32,7 @@ class UserController {
     }
   };
 
-  static loginUser = async (req, res, next) => {
+  static login = async (req, res, next) => {
     try {
       //CHECK IF USER ALREADY EXIST
       const { email, password } = req.body;
@@ -65,14 +65,16 @@ class UserController {
   };
 
   //PRIVATE ROUTE
-  static porenquanto = async (req, res, next) => {
+  static me = async (req, res, next) => {
     const id = req.params.id;
     //CHECK IF USER ALREADY EXIST - PASSWORD
     const user = await users.findById(id, "-password");
 
     if (!user) {
-      next(error404)
+      return res.status(404).json({ msg: "Não Encotrado" });
     }
+    req.result = user;
+    next();
   };
 }
 export default UserController;
