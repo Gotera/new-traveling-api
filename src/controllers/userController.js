@@ -38,13 +38,13 @@ class UserController {
       const { email, password } = req.body;
       const user = await users.findOne({ email: email });
       if (!user) {
-        return res.status(404).json({ error: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Credenciais Invalidas!" });
       }
 
       //CHECK IF PASSWORD MATCH
-      const checkpassword = bcrypt.compare(password, user.password);
+      const checkpassword = await bcrypt.compare(password, user.password);
       if (!checkpassword) {
-        return res.status(422).json({ error: "Senha Invalida!" });
+        return res.status(422).json({ error: "Credenciais Invalidas!" });
       }
 
       // CREATE A TOKEN
