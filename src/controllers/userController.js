@@ -38,13 +38,13 @@ class UserController {
       const { email, password } = req.body;
       const user = await users.findOne({ email: email });
       if (!user) {
-        return res.status(404).json({ error: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Credenciais Invalidas!" });
       }
 
       //CHECK IF PASSWORD MATCH
-      const checkpassword = bcrypt.compare(password, user.password);
+      const checkpassword = await bcrypt.compare(password, user.password);
       if (!checkpassword) {
-        return res.status(422).json({ error: "Senha Invalida!" });
+        return res.status(422).json({ error: "Credenciais Invalidas!" });
       }
 
       // CREATE A TOKEN
@@ -56,9 +56,16 @@ class UserController {
         secret
       );
 
-      res
-        .status(200)
-        .json({ msg: "Autenticação realizada com sucesso!", token });
+      const userResult = {
+        name: user.name,
+        email,
+      };
+
+      res.status(200).json({
+        msg: "Autenticação realizada com sucesso!",
+        token,
+        userResult,
+      });
     } catch (err) {
       next(err);
     }
@@ -66,15 +73,12 @@ class UserController {
 
   //PRIVATE ROUTE
   static me = async (req, res, next) => {
-    const id = req.params.id;
     //CHECK IF USER ALREADY EXIST - PASSWORD
-    const user = await users.findById(id, "-password");
-
+    const user = res.locals.user;
     if (!user) {
       return res.status(404).json({ msg: "Não Encotrado" });
     }
-    req.result = user;
-    next();
+    res.status(200).json({ user });
   };
 }
 export default UserController;
