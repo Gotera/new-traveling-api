@@ -7,6 +7,5 @@ const router = express.Router();
 router
   .post("/api/register/user", UserController.register)
   .post("/api/login", UserController.login)
-  .get("/api/user/:id", UserController.me, checkToken);
+  .get("/api/user", checkToken, UserController.me);
 export default router;
- 
